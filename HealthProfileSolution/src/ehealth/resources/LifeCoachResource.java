@@ -35,7 +35,4 @@ public class LifeCoachResource {
 		UserProfile user = Person.getUserByUsername(username);
 		return user;
 	}
-	
-	
-
 }

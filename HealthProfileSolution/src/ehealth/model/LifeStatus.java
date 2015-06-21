@@ -4,9 +4,11 @@ import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @Table(name="LifeStatus")
+@XmlRootElement
 public class LifeStatus implements Serializable{
 
 	private static final long serialVersionUID = 1L;
@@ -48,7 +50,7 @@ public class LifeStatus implements Serializable{
 	@JoinColumn(name="Mid", nullable=false)
 	private MeasureDefinition measureDefinition;
 	public MeasureDefinition getMeasureDefinition(){
-		return measureDefinition;
+		return this.measureDefinition;
 	}
 	public void setMeasureDefinition(MeasureDefinition measureDefinition){
 		this.measureDefinition=measureDefinition;

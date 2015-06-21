@@ -8,6 +8,8 @@ import javax.jws.soap.SOAPBinding.*;
 
 import ehealth.model.MeasureDefinition;
 import ehealth.model.UserProfile;
+import ehealth.model.Goal;
+import ehealth.model.LifeStatus;
 
 @WebService
 @SOAPBinding(style = Style.DOCUMENT, use = Use.LITERAL)
@@ -19,6 +21,13 @@ public interface LifestyleCoach {
 	@WebMethod(operationName = "login")
 	@WebResult(name = "login")
 	public String login(@WebParam(name="username") String username, @WebParam(name="password") String password);
+	
+	/*
+	 * Check if a user is logged-on
+	 */
+	@WebMethod(operationName = "loginCheck")
+	@WebResult(name = "loginCheck")
+	public int loginCheck(@WebParam(name="username") String username, @WebParam(name="key") String key);
 	
 	/*
 	 *logs out the user from the system 
@@ -56,9 +65,65 @@ public interface LifestyleCoach {
 	public int deleteUser(@WebParam(name="Uid") int Uid);
 	
 	/*
+	 * Update a userProfile
+	 */
+	@WebMethod(operationName="updateUser")
+	@WebResult(name="updateUser")
+	public int updateUser(@WebParam(name="user") UserProfile u,@WebParam(name="user") String user ,@WebParam(name="key") String key);
+	
+	/*
 	 * Get Measures Definition
 	 */
 	@WebMethod(operationName="getMeasuresDefinition")
 	@WebResult(name="Measures")
 	public List<MeasureDefinition> getMeasuresDefinition();
+	
+	/*
+	 * add current lifeStatus of the user
+	 */
+	@WebMethod(operationName="addLifeStatus")
+	@WebResult(name="LifeStatus")
+	public LifeStatus addLifeStatus(@WebParam(name = "username") String username,@WebParam(name = "key") String key,@WebParam(name = "value") Double value,@WebParam(name = "measureType") String mType);
+	
+	/*
+	 *Check for the current Goal 
+	 */
+	@WebMethod(operationName="getCurrentGoal")
+	@WebResult(name="CurrentGoal")
+	public List<Goal> getCurrentGoal(@WebParam(name="username") String user,@WebParam(name="key") String key);
+	
+	/*
+	 * Set a goal for a user
+	 */
+	@WebMethod(operationName="setGoal")
+	@WebResult(name="setGoal")
+	public Goal setGoal(@WebParam(name="GoalId") Goal g, @WebParam(name="username") String user, @WebParam(name="key") String key );
+	
+	/*
+	 * Delete a goal
+	 */
+	@WebMethod(operationName="deleteGoal")
+	@WebResult(name="deleteGoal")
+	public String deleteGoal(@WebParam(name="Goalid") int Goalid, @WebParam(name="username") String user, @WebParam(name="key") String key );
+	
+	/*
+	 * Update an existing goal
+	 */
+	@WebMethod(operationName="GoalUpdate")
+	@WebResult(name="GoalUpdate")
+	public Goal GoalUpdate(@WebParam(name="goal") Goal g, @WebParam(name="username") String user, @WebParam(name="key") String key );
+	
+	/*
+	 * Get motivation
+	 */
+	@WebMethod(operationName="GetMotivation")
+	@WebResult(name="Motivation")
+	public String getMotivation(@WebParam(name="username") String user, @WebParam(name="key") String key);
+	
+	/*
+	 * Get push notifications
+	 */
+	@WebMethod(operationName="GetPushMessage")
+	@WebResult(name="PushMessage")
+	public Goal getPushMessage(@WebParam(name="username") String user, @WebParam(name="key") String key);
 }

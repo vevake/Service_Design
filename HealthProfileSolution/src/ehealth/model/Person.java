@@ -158,6 +158,41 @@ public class Person {
 	}
 	
 	/*
+	 * Delete a LifeStatus
+	 */
+	public static int deleteLifeStatus(LifeStatus ls){
+		EntityManager em=LifestyleCoachDAO.instance.createEntityManager();
+		try{
+			EntityTransaction tx= em.getTransaction();
+			tx.begin();
+			ls=em.merge(ls);
+			em.remove(ls);
+			tx.commit();
+			return 1;
+		}
+		finally{
+			LifestyleCoachDAO.instance.closeConnections(em);
+		}
+	}
+	
+	/*
+	 * Save a LifeStatus
+	 */
+	public static LifeStatus saveLifeStatus(LifeStatus ls){
+		EntityManager em=LifestyleCoachDAO.instance.createEntityManager();
+		try{
+			EntityTransaction tx= em.getTransaction();
+			tx.begin();
+			em.persist(ls);
+			tx.commit();
+			return ls;
+		}
+		finally{
+			LifestyleCoachDAO.instance.closeConnections(em);
+		}
+	}
+	
+	/*
 	 * Retrieves the HealthMeasureHistory of User
 	 */
 	public static HealthMeasureHistory getHealthHistorybyUserId(int Uid){
@@ -186,6 +221,23 @@ public class Person {
 	}
 	
 	/*
+	 * Save HealthMeasureHistory
+	 */
+	public static void saveHealthMeasureHistory(HealthMeasureHistory hm){
+		EntityManager em=LifestyleCoachDAO.instance.createEntityManager();
+		EntityTransaction tx= em.getTransaction();
+		try{
+			tx.begin();
+			em.persist(hm);
+			tx.commit();
+			return hm;
+		}
+		finally{
+			LifestyleCoachDAO.instance.closeConnections(em);
+		}
+	}
+	
+	/*
 	 * Get All Measures Definition
 	 */
 	public static List<MeasureDefinition> getAllMeasureDefinition(){
@@ -199,4 +251,98 @@ public class Person {
 			}
 	}
 	
+	/*
+	 * Retrieve the current goal of the user
+	 */
+	public static List<Goal> getGoalbyUserId(int Uid){
+		EntityManager em=LifestyleCoachDAO.instance.createEntityManager();
+		try{
+			List<Goal> g=em.createNativeQuery("SELECT * from Goal WHERE Uid="+Uid+" AND Progress='complete'", LifeStatus.class).getResultList();
+			return g;
+		}
+		finally{
+			LifestyleCoachDAO.instance.closeConnections(em);
+		}
+		
+	}
+	
+	/*
+	 * Retrieve goal by GoalID
+	 */
+	public static Goal getGoalbyId(int goalId){
+		EntityManager em=LifestyleCoachDAO.instance.createEntityManager();
+		try{
+			Goal g = em.find(Goal.class, goalId);
+			return g;
+		}
+		finally{
+			LifestyleCoachDAO.instance.closeConnections(em);
+		}
+	}
+	
+	/*
+	 * Set Goal for a user
+	 */
+	public static Goal SaveGoal(Goal g){
+		EntityManager em=LifestyleCoachDAO.instance.createEntityManager();
+		EntityTransaction tx= em.getTransaction();
+		try{
+			tx.begin();
+			em.persist(g);
+			tx.commit();
+			return g;
+		}
+		finally{
+			LifestyleCoachDAO.instance.closeConnections(em);
+		}
+	}
+	
+	/*
+	 * Update an existing Goal
+	 */
+	public static Goal GoalUpdate(Goal g){
+		EntityManager em=LifestyleCoachDAO.instance.createEntityManager();
+		EntityTransaction tx= em.getTransaction();
+		try{
+			tx.begin();
+			g=em.merge(g);
+			tx.commit();
+			return g;
+		}
+		finally{
+			LifestyleCoachDAO.instance.closeConnections(em);
+		}		
+	}
+	
+	/*
+	 * Delete a goal
+	 */
+	public static int RemoveGoal(Goal goal){
+		EntityManager em=LifestyleCoachDAO.instance.createEntityManager();
+		try{
+			EntityTransaction tx= em.getTransaction();
+			tx.begin();
+			goal=em.merge(goal);
+			em.remove(goal);
+			tx.commit();
+			return 1;
+			}
+		finally{
+			LifestyleCoachDAO.instance.closeConnections(em);
+		}
+	}
+	
+	/*
+	 * Return the Motivational advice for the user 
+	 */
+	public static String getAdvice(int Uid){
+		EntityManager em=LifestyleCoachDAO.instance.createEntityManager();
+		try{
+			String advice = (String)em.createNativeQuery("SELECT Advice from Advice WHERE Uid="+Uid+", Advice.class").getSingleResult();
+			return advice;
+		}
+		finally{
+			LifestyleCoachDAO.instance.closeConnections(em);
+		}
+	}
 }

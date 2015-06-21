@@ -1,13 +1,16 @@
 package ehealth.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
 @Table(name="UserProfile")
@@ -72,4 +75,65 @@ public class UserProfile implements Serializable {
 		this.key = key;
 	}	
 	
+	//bi-directional many-to-one association to LifeStatus
+	@OneToMany(mappedBy="UserProfile")
+	private List<LifeStatus> LifeStatus;
+	@XmlTransient
+	public List<LifeStatus> getLifeStatus() {
+		return this.LifeStatus;
+	}
+
+	public void setLifeStatus(List<LifeStatus> LifeStatus) {
+		this.LifeStatus = LifeStatus;
+	}
+	
+	//bi-directional many-to-one association to Goal
+	@OneToMany(mappedBy="UserProfile")
+	private List<Goal> Goal;
+	@XmlTransient
+	public List<Goal> getGoal() {
+		return this.Goal;
+	}
+
+	public void setGoal(List<Goal> Goal) {
+		this.Goal = Goal;
+	}
+		
+	//bi-directional many-to-one association to HealthMeasureHistory
+	@OneToMany(mappedBy="UserProfile")
+	private List<HealthMeasureHistory> HealthMeasureHistory;
+	@XmlTransient
+	public List<HealthMeasureHistory> getHealthMeasureHistory() {
+		return this.HealthMeasureHistory;
+	}
+
+	public void setHealthMeasureHistory(List<HealthMeasureHistory> HealthMeasureHistory) {
+		this.HealthMeasureHistory = HealthMeasureHistory;
+	}
+
+	
+	//bi-directional many-to-one association to CareGiver
+	@OneToMany(mappedBy="UserProfile")
+	private List<Caregiver> Caregiver;
+	@XmlTransient
+	public List<Caregiver> getCaregiver() {
+		return this.Caregiver;
+	}
+
+	public void setCaregiver(List<Caregiver> Caregiver) {
+		this.Caregiver = Caregiver;
+	}
+	
+	//bi-directional many-to-one association to Advice
+	@OneToMany(mappedBy="UserProfile")
+	private List<Advice> advice;
+	@XmlTransient
+	public List<Advice> getAdvice() {
+		return this.advice;
+	}
+
+	public void setAdvice(List<Advice> advice) {
+		this.advice = advice;
+	}
+			
 }

@@ -17,7 +17,7 @@ import javax.xml.ws.WebServiceFeature;
  * Generated source version: 2.2
  * 
  */
-@WebServiceClient(name = "HealthProfile", targetNamespace = "http://ws.ehealth/", wsdlLocation = "http://localhost:8000/LifestyleCoach?wsdl")
+@WebServiceClient(name = "HealthProfile", targetNamespace = "http://ws.ehealth/", wsdlLocation = "http://localhost:8000/ehealth/LifestyleCoach?wsdl")
 public class HealthProfile
     extends Service
 {
@@ -30,7 +30,7 @@ public class HealthProfile
         URL url = null;
         WebServiceException e = null;
         try {
-            url = new URL("http://localhost:8000/LifestyleCoach?wsdl");
+            url = new URL("http://localhost:8000/ehealth/LifestyleCoach?wsdl");
         } catch (MalformedURLException ex) {
             e = new WebServiceException(ex);
         }

@@ -5,8 +5,8 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 @Entity
-@Table(name="caregiver")
-@NamedQuery(name="Caregiver.findAll", query="SELECT c FROM Caregiver c")
+@Table(name="CareGiver")
+@NamedQuery(name="CareGiver.findAll", query="SELECT c FROM CareGiver c")
 public class Caregiver implements Serializable{
 
 	private static final long serialVersionUID = 1L;

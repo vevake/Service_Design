@@ -7,7 +7,7 @@ public class LifeCoachPublisher {
 
 	public static String SERVER_URL = "http://localhost";
 	public static String PORT = "8000";
-	public static String BASE_URL = "/LifestyleCoach";
+	public static String BASE_URL = "/ehealth/LifestyleCoach";
 
 	public static String getEndpointURL() {
 		return SERVER_URL+":"+PORT+BASE_URL;
