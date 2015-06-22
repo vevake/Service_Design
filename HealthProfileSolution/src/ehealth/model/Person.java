@@ -230,7 +230,6 @@ public class Person {
 			tx.begin();
 			em.persist(hm);
 			tx.commit();
-			return hm;
 		}
 		finally{
 			LifestyleCoachDAO.instance.closeConnections(em);
