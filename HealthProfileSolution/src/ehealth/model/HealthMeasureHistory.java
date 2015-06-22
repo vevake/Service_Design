@@ -61,11 +61,11 @@ public class HealthMeasureHistory implements Serializable{
 	//Many-to-one association to UserProfile
 	@ManyToOne
 	@JoinColumn(name="Uid", nullable=false)
-	private UserProfile userProfile;
+	private UserProfile UserProfile;
 	public UserProfile getUserProfile(){
-		return userProfile;
+		return UserProfile;
 	}
 	public void setUserProfile(UserProfile userProfile){
-		this.userProfile=userProfile;
+		this.UserProfile=userProfile;
 	}
 }

@@ -15,7 +15,7 @@ public class MeasureDefinition implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(unique=true, nullable=false)
+	@Column(name="Mid",unique=true, nullable=false)
 	private int Mid;
 	public int getMid(){
 		return Mid;

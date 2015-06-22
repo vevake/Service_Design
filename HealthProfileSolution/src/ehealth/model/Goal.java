@@ -18,7 +18,7 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name="Goal")
-@NamedQuery(name="Goal.findAll", query="SELECT g FROM Gaol g")
+@NamedQuery(name="Goal.findAll", query="SELECT g FROM Goal g")
 public class Goal implements Serializable{
 
 	private static final long serialVersionUID = 1L;
@@ -82,11 +82,11 @@ public class Goal implements Serializable{
 	//bi-directional many-to-one association to Userprofile
 	@ManyToOne
 	@JoinColumn(name="Uid", nullable=false)
-	private UserProfile userprofile;
+	private UserProfile UserProfile;
 	public UserProfile getUserprofile() {
-		return this.userprofile;
+		return this.UserProfile;
 	}
 	public void setUserProfile(UserProfile userprofile) {
-		this.userprofile = userprofile;
+		this.UserProfile = userprofile;
 	}
 }

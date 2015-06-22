@@ -68,7 +68,7 @@ public class MeasureDefaultRange implements Serializable{
 	
 	//bi-directional many-to-one association to MeasureDefinition
 	@ManyToOne
-	@JoinColumn(name="Mid", nullable=false, insertable=false, updatable=false)
+	@JoinColumn(name="Mid", nullable=false)
 	private MeasureDefinition measuredefinition;
 	public MeasureDefinition getMeasureDefinition() {
 		return this.measuredefinition;

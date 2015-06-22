@@ -8,12 +8,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
 @Table(name="UserProfile")
+@NamedQuery(name="UserProfile.findAll", query="SELECT u FROM UserProfile u")
 public class UserProfile implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
@@ -21,7 +23,7 @@ public class UserProfile implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(unique=true, nullable=false)
+	@Column(name="Uid",unique=true, nullable=false)
 	private int Uid;
 	public int getUid() {
 		return this.Uid;
@@ -94,7 +96,6 @@ public class UserProfile implements Serializable {
 	public List<Goal> getGoal() {
 		return this.Goal;
 	}
-
 	public void setGoal(List<Goal> Goal) {
 		this.Goal = Goal;
 	}
@@ -113,15 +114,25 @@ public class UserProfile implements Serializable {
 
 	
 	//bi-directional many-to-one association to CareGiver
-	@OneToMany(mappedBy="UserProfile")
-	private List<Caregiver> Caregiver;
+	@OneToMany(mappedBy="UserProfile1")
+	private List<CareGiver> CareGiver1;
 	@XmlTransient
-	public List<Caregiver> getCaregiver() {
-		return this.Caregiver;
+	public List<CareGiver> getCaregiver1() {
+		return this.CareGiver1;
 	}
-
-	public void setCaregiver(List<Caregiver> Caregiver) {
-		this.Caregiver = Caregiver;
+	public void setCaregiver1(List<CareGiver> Caregiver1) {
+		this.CareGiver1 = Caregiver1;
+	}
+	
+	//bi-directional many-to-one association to CareGiver
+	@OneToMany(mappedBy="UserProfile2")
+	private List<CareGiver> CareGiver2;
+	@XmlTransient
+	public List<CareGiver> getCaregiver2() {
+		return this.CareGiver2;
+	}
+	public void setCaregiver2(List<CareGiver> Caregiver2) {
+		this.CareGiver2 = Caregiver2;
 	}
 	
 	//bi-directional many-to-one association to Advice

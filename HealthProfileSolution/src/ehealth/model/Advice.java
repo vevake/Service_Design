@@ -18,7 +18,7 @@ public class Advice implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(unique=true, nullable=false)
+	@Column(name="AId",unique=true, nullable=false)
 	private int AId;
 	public int getAId() {
 		return this.AId;
@@ -26,8 +26,7 @@ public class Advice implements Serializable{
 	public void setAId(int aid) {
 		this.AId = aid;
 	}
-	
-	
+		
 	@Column(length=500)
 	private String Advice;
 	public String getAdvice() {
@@ -39,26 +38,12 @@ public class Advice implements Serializable{
 
 	//bi-directional many-to-one association to UserProfile
 	@ManyToOne
-	@JoinColumn(name="Uid", nullable=false)
-	private UserProfile userprofile;
+	@JoinColumn(name="Uid",referencedColumnName="Uid", nullable=false)
+	private UserProfile UserProfile;
 	public UserProfile getUserProfile() {
-		return this.userprofile;
+		return UserProfile;
 	}
 	public void setUserProfile(UserProfile userprofile) {
-		this.userprofile = userprofile;
-	}
-	
-	//bi-directional many-to-one association to Measuredefinition
-	@ManyToOne
-	@JoinColumn(name="MedicId", nullable=false)
-	private Medic medic;
-	@XmlTransient
-	public Medic getMedic() {
-		return this.medic;
-	}
-	public void setMedic(Medic medic) {
-		this.medic = medic;
-	}
-	
-
+		this.UserProfile = userprofile;
+	}	
 }

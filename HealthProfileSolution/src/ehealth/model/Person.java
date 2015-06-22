@@ -15,9 +15,10 @@ public class Person {
 	 */
 	public static UserProfile getUserByUsername(String username){
 		EntityManager em=LifestyleCoachDAO.instance.createEntityManager();
-		try{		
-		UserProfile user=em.createQuery("SELECT u from UserProfile where username='"+username+"'",UserProfile.class).getSingleResult();
-		return user;
+		try{	
+			System.out.println(username);
+			UserProfile user=em.createQuery("SELECT u from UserProfile u where u.username='"+username+"'",UserProfile.class).getSingleResult();
+			return user;
 		}
 		finally{
 		LifestyleCoachDAO.instance.closeConnections(em);

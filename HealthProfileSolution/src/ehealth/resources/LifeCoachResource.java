@@ -1,5 +1,7 @@
 package ehealth.resources;
 
+import java.util.List;
+
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.ws.rs.Consumes;
@@ -33,6 +35,16 @@ public class LifeCoachResource {
 	@Consumes({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
 	public UserProfile getUserProfile(@QueryParam("username") String username) {
 		UserProfile user = Person.getUserByUsername(username);
+		System.out.println(user.getLname());
+		return user;
+	}
+	
+	@GET
+	@Path("AllProfile")
+	@Produces({ MediaType.TEXT_XML, MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML })
+	@Consumes({ MediaType.TEXT_XML, MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML })
+	public List<UserProfile> getUserProfile() {
+		List<UserProfile> user = Person.getAllUsers();
 		return user;
 	}
 }
