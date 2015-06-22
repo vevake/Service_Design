@@ -22,7 +22,7 @@ public class LifestyleCoachImpl implements LifestyleCoach {
 	public String login(String username, String password) {
 		if(!username.isEmpty()){
 			UserProfile user = Person.getUserByUsername(username);
-			if(user.getPassword()==password){
+			if(user.getPassword().equals(password)){
 				UUID uid=UUID.randomUUID();
 				String uuidString=uid.toString();
 				String key=Person.savekey(username,uuidString);
@@ -128,7 +128,7 @@ public class LifestyleCoachImpl implements LifestyleCoach {
 		List<MeasureDefinition> list= Person.getAllMeasureDefinition();
 		return list;
 	}	
-	
+
 	/*
 	 * Add the current Lifestatus
 	 */
@@ -161,6 +161,24 @@ public class LifestyleCoachImpl implements LifestyleCoach {
 		}
 		return null;
 	}
+	
+	/*
+	 * Retrieve the LifeStatus of a user
+	 */
+	public List<LifeStatus> viewLifeStatus(String username, String key){
+		if (loginCheck(username, key) == 1) {
+			try {
+				UserProfile u =Person.getUserByUsername(username);
+				List<LifeStatus> ls = Person.getLifeStatusbyUserId(u.getUid());
+				return ls;
+			}
+			catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return null;
+	}
+	
 	
 	/*
 	 *Get the current Goal 

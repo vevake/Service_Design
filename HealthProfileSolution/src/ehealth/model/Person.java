@@ -119,10 +119,10 @@ public class Person {
 	/*
 	 * Retrieves the Recent LifeStatus by matching the UserID
 	 */
-	public static LifeStatus getLifeStatusbyUserId(int Uid){
+	public static List<LifeStatus> getLifeStatusbyUserId(int Uid){
 		EntityManager em=LifestyleCoachDAO.instance.createEntityManager();
 		try{
-		LifeStatus l=em.find(LifeStatus.class, Uid);
+		List<LifeStatus> l=em.createNativeQuery("SELECT * from LifeStatus WHERE Uid="+Uid, LifeStatus.class).getResultList();
 		return l;
 		}
 		finally{
@@ -250,6 +250,19 @@ public class Person {
 			LifestyleCoachDAO.instance.closeConnections(em);
 			}
 	}
+	/*
+	 * Get Measures Definition for a measure name
+	 */
+	public static MeasureDefinition getMeasureDefinition(String mName){
+		EntityManager em=LifestyleCoachDAO.instance.createEntityManager();
+		try{
+		MeasureDefinition md=(MeasureDefinition)em.createNativeQuery("SELECT m from MeasureDefinition WHERE measureName='"+mName+"'", MeasureDefinition.class).getSingleResult();
+		return md;
+		}
+		finally{
+			LifestyleCoachDAO.instance.closeConnections(em);
+			}
+	}
 	
 	/*
 	 * Retrieve the current goal of the user
@@ -257,6 +270,7 @@ public class Person {
 	public static List<Goal> getGoalbyUserId(int Uid){
 		EntityManager em=LifestyleCoachDAO.instance.createEntityManager();
 		try{
+			System.out.println("qwerty");
 			List<Goal> g=em.createNativeQuery("SELECT * from Goal WHERE Uid="+Uid+" AND Progress='complete'", LifeStatus.class).getResultList();
 			return g;
 		}

@@ -30,6 +30,7 @@ public class ObjectFactory {
     private final static QName _GetAllUsersResponse_QNAME = new QName("http://ws.ehealth/", "getAllUsersResponse");
     private final static QName _SetGoal_QNAME = new QName("http://ws.ehealth/", "setGoal");
     private final static QName _GoalUpdateResponse_QNAME = new QName("http://ws.ehealth/", "GoalUpdateResponse");
+    private final static QName _ViewLifeStatus_QNAME = new QName("http://ws.ehealth/", "viewLifeStatus");
     private final static QName _DeleteUserResponse_QNAME = new QName("http://ws.ehealth/", "deleteUserResponse");
     private final static QName _GetPushMessageResponse_QNAME = new QName("http://ws.ehealth/", "GetPushMessageResponse");
     private final static QName _LifeStatus_QNAME = new QName("http://ws.ehealth/", "lifeStatus");
@@ -43,12 +44,13 @@ public class ObjectFactory {
     private final static QName _DeleteUser_QNAME = new QName("http://ws.ehealth/", "deleteUser");
     private final static QName _GetUserProfile_QNAME = new QName("http://ws.ehealth/", "getUserProfile");
     private final static QName _GoalUpdate_QNAME = new QName("http://ws.ehealth/", "GoalUpdate");
+    private final static QName _ViewLifeStatusResponse_QNAME = new QName("http://ws.ehealth/", "viewLifeStatusResponse");
     private final static QName _Logout_QNAME = new QName("http://ws.ehealth/", "logout");
     private final static QName _CreateUser_QNAME = new QName("http://ws.ehealth/", "createUser");
     private final static QName _DeleteGoal_QNAME = new QName("http://ws.ehealth/", "deleteGoal");
     private final static QName _GetUserProfileResponse_QNAME = new QName("http://ws.ehealth/", "getUserProfileResponse");
-    private final static QName _UpdateUserResponse_QNAME = new QName("http://ws.ehealth/", "updateUserResponse");
     private final static QName _SetGoalResponse_QNAME = new QName("http://ws.ehealth/", "setGoalResponse");
+    private final static QName _UpdateUserResponse_QNAME = new QName("http://ws.ehealth/", "updateUserResponse");
     private final static QName _LoginCheck_QNAME = new QName("http://ws.ehealth/", "loginCheck");
     private final static QName _AddLifeStatus_QNAME = new QName("http://ws.ehealth/", "addLifeStatus");
     private final static QName _AddLifeStatusResponse_QNAME = new QName("http://ws.ehealth/", "addLifeStatusResponse");
@@ -127,6 +129,14 @@ public class ObjectFactory {
      */
     public DeleteUserResponse createDeleteUserResponse() {
         return new DeleteUserResponse();
+    }
+
+    /**
+     * Create an instance of {@link ViewLifeStatus }
+     * 
+     */
+    public ViewLifeStatus createViewLifeStatus() {
+        return new ViewLifeStatus();
     }
 
     /**
@@ -290,6 +300,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link ViewLifeStatusResponse }
+     * 
+     */
+    public ViewLifeStatusResponse createViewLifeStatusResponse() {
+        return new ViewLifeStatusResponse();
+    }
+
+    /**
      * Create an instance of {@link GoalUpdate }
      * 
      */
@@ -405,6 +423,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://ws.ehealth/", name = "GoalUpdateResponse")
     public JAXBElement<GoalUpdateResponse> createGoalUpdateResponse(GoalUpdateResponse value) {
         return new JAXBElement<GoalUpdateResponse>(_GoalUpdateResponse_QNAME, GoalUpdateResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ViewLifeStatus }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://ws.ehealth/", name = "viewLifeStatus")
+    public JAXBElement<ViewLifeStatus> createViewLifeStatus(ViewLifeStatus value) {
+        return new JAXBElement<ViewLifeStatus>(_ViewLifeStatus_QNAME, ViewLifeStatus.class, null, value);
     }
 
     /**
@@ -525,6 +552,15 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ViewLifeStatusResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://ws.ehealth/", name = "viewLifeStatusResponse")
+    public JAXBElement<ViewLifeStatusResponse> createViewLifeStatusResponse(ViewLifeStatusResponse value) {
+        return new JAXBElement<ViewLifeStatusResponse>(_ViewLifeStatusResponse_QNAME, ViewLifeStatusResponse.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link Logout }{@code >}}
      * 
      */
@@ -561,21 +597,21 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link UpdateUserResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://ws.ehealth/", name = "updateUserResponse")
-    public JAXBElement<UpdateUserResponse> createUpdateUserResponse(UpdateUserResponse value) {
-        return new JAXBElement<UpdateUserResponse>(_UpdateUserResponse_QNAME, UpdateUserResponse.class, null, value);
-    }
-
-    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link SetGoalResponse }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "http://ws.ehealth/", name = "setGoalResponse")
     public JAXBElement<SetGoalResponse> createSetGoalResponse(SetGoalResponse value) {
         return new JAXBElement<SetGoalResponse>(_SetGoalResponse_QNAME, SetGoalResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link UpdateUserResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://ws.ehealth/", name = "updateUserResponse")
+    public JAXBElement<UpdateUserResponse> createUpdateUserResponse(UpdateUserResponse value) {
+        return new JAXBElement<UpdateUserResponse>(_UpdateUserResponse_QNAME, UpdateUserResponse.class, null, value);
     }
 
     /**

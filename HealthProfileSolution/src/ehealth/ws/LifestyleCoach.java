@@ -86,6 +86,13 @@ public interface LifestyleCoach {
 	public LifeStatus addLifeStatus(@WebParam(name = "username") String username,@WebParam(name = "key") String key,@WebParam(name = "value") Double value,@WebParam(name = "measureType") String mType);
 	
 	/*
+	 * Retrieve the current LifeStatus
+	 */
+	@WebMethod(operationName="viewLifeStatus")
+	@WebResult(name="viewLifeStatus")
+	public List<LifeStatus> viewLifeStatus(@WebParam(name="username") String username, @WebParam(name = "key") String key);
+	
+	/*
 	 *Check for the current Goal 
 	 */
 	@WebMethod(operationName="getCurrentGoal")
