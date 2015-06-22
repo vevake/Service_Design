@@ -110,8 +110,8 @@ public class LifestyleCoachImpl implements LifestyleCoach {
 	/*
 	 *Update an existing user 
 	 */
-	public int updateUser(UserProfile u, String user, String key){
-		if(loginCheck(user,key) ==1){
+	public int updateUser(UserProfile u, String username, String key){
+		if(loginCheck(username,key) ==1){
 			Person.updatePerson(u);
 			return u.getUid();
 		}

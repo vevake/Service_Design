@@ -15,5 +15,6 @@
 			<attribute name="owner.project.facets" value="jpt.jpa"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/vjay/Documents/Service_Design/HealthProfileSolution/jersey-client-1.1.5.1.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

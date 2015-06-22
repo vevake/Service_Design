@@ -16,6 +16,7 @@ import javax.ws.rs.core.UriInfo;
 
 import ehealth.model.UserProfile;
 import ehealth.model.Person;
+import ehealth.ws.LifestyleCoachImpl;
 
 @Stateless
 @LocalBean
@@ -47,4 +48,5 @@ public class LifeCoachResource {
 		List<UserProfile> user = Person.getAllUsers();
 		return user;
 	}
+
 }

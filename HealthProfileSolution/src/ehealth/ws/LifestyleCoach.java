@@ -69,7 +69,7 @@ public interface LifestyleCoach {
 	 */
 	@WebMethod(operationName="updateUser")
 	@WebResult(name="updateUser")
-	public int updateUser(@WebParam(name="user") UserProfile u,@WebParam(name="user") String user ,@WebParam(name="key") String key);
+	public int updateUser(@WebParam(name="user") UserProfile u,@WebParam(name="username") String username, @WebParam(name="key") String key);
 	
 	/*
 	 * Get Measures Definition

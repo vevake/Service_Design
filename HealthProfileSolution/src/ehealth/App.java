@@ -9,7 +9,7 @@ import org.glassfish.jersey.server.ResourceConfig;
 
 public class App
 {
-    private static final URI BASE_URI = URI.create("http://localhost:5900/rest/LifestyleCoach/");	
+    private static final URI BASE_URI = URI.create("http://localhost:8000/rest/LifestyleCoach/");	
     public static void main(String[] args) throws IllegalArgumentException, IOException, URISyntaxException
     {
     	System.out.println("Starting sdelab standalone HTTP server...");
