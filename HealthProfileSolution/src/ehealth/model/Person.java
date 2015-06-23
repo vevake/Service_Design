@@ -16,7 +16,6 @@ public class Person {
 	public static UserProfile getUserByUsername(String username){
 		EntityManager em=LifestyleCoachDAO.instance.createEntityManager();
 		try{	
-			System.out.println(username);
 			UserProfile user=em.createQuery("SELECT u from UserProfile u where u.username='"+username+"'",UserProfile.class).getSingleResult();
 			return user;
 		}
@@ -270,8 +269,7 @@ public class Person {
 	public static List<Goal> getGoalbyUserId(int Uid){
 		EntityManager em=LifestyleCoachDAO.instance.createEntityManager();
 		try{
-			System.out.println("qwerty");
-			List<Goal> g=em.createNativeQuery("SELECT * from Goal WHERE Uid="+Uid+" AND Progress='complete'", LifeStatus.class).getResultList();
+			List<Goal> g=em.createNativeQuery("SELECT * from Goal WHERE Uid="+Uid+"", Goal.class).getResultList();
 			return g;
 		}
 		finally{
@@ -352,8 +350,8 @@ public class Person {
 	public static String getAdvice(int Uid){
 		EntityManager em=LifestyleCoachDAO.instance.createEntityManager();
 		try{
-			String advice = (String)em.createNativeQuery("SELECT Advice from Advice WHERE Uid="+Uid+", Advice.class").getSingleResult();
-			return advice;
+			Advice advice = (Advice)em.createNativeQuery("SELECT * from Advice WHERE Uid="+Uid+"", Advice.class).getSingleResult();
+			return advice.getAdvice();
 		}
 		finally{
 			LifestyleCoachDAO.instance.closeConnections(em);

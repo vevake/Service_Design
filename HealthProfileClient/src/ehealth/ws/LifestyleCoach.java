@@ -42,14 +42,14 @@ public interface LifestyleCoach {
      * @param username
      * @param key
      * @return
-     *     returns java.util.List<ehealth.ws.LifeStatus>
+     *     returns java.util.List<ehealth.ws.Goal>
      */
     @WebMethod
-    @WebResult(name = "viewLifeStatus", targetNamespace = "")
-    @RequestWrapper(localName = "viewLifeStatus", targetNamespace = "http://ws.ehealth/", className = "ehealth.ws.ViewLifeStatus")
-    @ResponseWrapper(localName = "viewLifeStatusResponse", targetNamespace = "http://ws.ehealth/", className = "ehealth.ws.ViewLifeStatusResponse")
-    @Action(input = "http://ws.ehealth/LifestyleCoach/viewLifeStatusRequest", output = "http://ws.ehealth/LifestyleCoach/viewLifeStatusResponse")
-    public List<LifeStatus> viewLifeStatus(
+    @WebResult(name = "CurrentGoal", targetNamespace = "")
+    @RequestWrapper(localName = "getCurrentGoal", targetNamespace = "http://ws.ehealth/", className = "ehealth.ws.GetCurrentGoal")
+    @ResponseWrapper(localName = "getCurrentGoalResponse", targetNamespace = "http://ws.ehealth/", className = "ehealth.ws.GetCurrentGoalResponse")
+    @Action(input = "http://ws.ehealth/LifestyleCoach/getCurrentGoalRequest", output = "http://ws.ehealth/LifestyleCoach/getCurrentGoalResponse")
+    public List<Goal> getCurrentGoal(
         @WebParam(name = "username", targetNamespace = "")
         String username,
         @WebParam(name = "key", targetNamespace = "")
@@ -78,66 +78,18 @@ public interface LifestyleCoach {
      * @param username
      * @param key
      * @return
-     *     returns java.util.List<ehealth.ws.Goal>
+     *     returns java.util.List<ehealth.ws.LifeStatus>
      */
     @WebMethod
-    @WebResult(name = "CurrentGoal", targetNamespace = "")
-    @RequestWrapper(localName = "getCurrentGoal", targetNamespace = "http://ws.ehealth/", className = "ehealth.ws.GetCurrentGoal")
-    @ResponseWrapper(localName = "getCurrentGoalResponse", targetNamespace = "http://ws.ehealth/", className = "ehealth.ws.GetCurrentGoalResponse")
-    @Action(input = "http://ws.ehealth/LifestyleCoach/getCurrentGoalRequest", output = "http://ws.ehealth/LifestyleCoach/getCurrentGoalResponse")
-    public List<Goal> getCurrentGoal(
+    @WebResult(name = "viewLifeStatus", targetNamespace = "")
+    @RequestWrapper(localName = "viewLifeStatus", targetNamespace = "http://ws.ehealth/", className = "ehealth.ws.ViewLifeStatus")
+    @ResponseWrapper(localName = "viewLifeStatusResponse", targetNamespace = "http://ws.ehealth/", className = "ehealth.ws.ViewLifeStatusResponse")
+    @Action(input = "http://ws.ehealth/LifestyleCoach/viewLifeStatusRequest", output = "http://ws.ehealth/LifestyleCoach/viewLifeStatusResponse")
+    public List<LifeStatus> viewLifeStatus(
         @WebParam(name = "username", targetNamespace = "")
         String username,
         @WebParam(name = "key", targetNamespace = "")
         String key);
-
-    /**
-     * 
-     * @param user
-     * @return
-     *     returns int
-     */
-    @WebMethod
-    @WebResult(name = "NewUser", targetNamespace = "")
-    @RequestWrapper(localName = "createUser", targetNamespace = "http://ws.ehealth/", className = "ehealth.ws.CreateUser")
-    @ResponseWrapper(localName = "createUserResponse", targetNamespace = "http://ws.ehealth/", className = "ehealth.ws.CreateUserResponse")
-    @Action(input = "http://ws.ehealth/LifestyleCoach/createUserRequest", output = "http://ws.ehealth/LifestyleCoach/createUserResponse")
-    public int createUser(
-        @WebParam(name = "user", targetNamespace = "")
-        UserProfile user);
-
-    /**
-     * 
-     * @param username
-     * @param key
-     * @return
-     *     returns int
-     */
-    @WebMethod
-    @WebResult(name = "loginCheck", targetNamespace = "")
-    @RequestWrapper(localName = "loginCheck", targetNamespace = "http://ws.ehealth/", className = "ehealth.ws.LoginCheck")
-    @ResponseWrapper(localName = "loginCheckResponse", targetNamespace = "http://ws.ehealth/", className = "ehealth.ws.LoginCheckResponse")
-    @Action(input = "http://ws.ehealth/LifestyleCoach/loginCheckRequest", output = "http://ws.ehealth/LifestyleCoach/loginCheckResponse")
-    public int loginCheck(
-        @WebParam(name = "username", targetNamespace = "")
-        String username,
-        @WebParam(name = "key", targetNamespace = "")
-        String key);
-
-    /**
-     * 
-     * @param uid
-     * @return
-     *     returns int
-     */
-    @WebMethod
-    @WebResult(name = "deleteUser", targetNamespace = "")
-    @RequestWrapper(localName = "deleteUser", targetNamespace = "http://ws.ehealth/", className = "ehealth.ws.DeleteUser")
-    @ResponseWrapper(localName = "deleteUserResponse", targetNamespace = "http://ws.ehealth/", className = "ehealth.ws.DeleteUserResponse")
-    @Action(input = "http://ws.ehealth/LifestyleCoach/deleteUserRequest", output = "http://ws.ehealth/LifestyleCoach/deleteUserResponse")
-    public int deleteUser(
-        @WebParam(name = "Uid", targetNamespace = "")
-        int uid);
 
     /**
      * 
@@ -175,6 +127,24 @@ public interface LifestyleCoach {
     /**
      * 
      * @param username
+     * @param password
+     * @return
+     *     returns java.lang.String
+     */
+    @WebMethod
+    @WebResult(name = "login", targetNamespace = "")
+    @RequestWrapper(localName = "login", targetNamespace = "http://ws.ehealth/", className = "ehealth.ws.Login")
+    @ResponseWrapper(localName = "loginResponse", targetNamespace = "http://ws.ehealth/", className = "ehealth.ws.LoginResponse")
+    @Action(input = "http://ws.ehealth/LifestyleCoach/loginRequest", output = "http://ws.ehealth/LifestyleCoach/loginResponse")
+    public String login(
+        @WebParam(name = "username", targetNamespace = "")
+        String username,
+        @WebParam(name = "password", targetNamespace = "")
+        String password);
+
+    /**
+     * 
+     * @param username
      * @param measureType
      * @param value
      * @param key
@@ -195,66 +165,6 @@ public interface LifestyleCoach {
         Double value,
         @WebParam(name = "measureType", targetNamespace = "")
         String measureType);
-
-    /**
-     * 
-     * @param username
-     * @param password
-     * @return
-     *     returns java.lang.String
-     */
-    @WebMethod
-    @WebResult(name = "login", targetNamespace = "")
-    @RequestWrapper(localName = "login", targetNamespace = "http://ws.ehealth/", className = "ehealth.ws.Login")
-    @ResponseWrapper(localName = "loginResponse", targetNamespace = "http://ws.ehealth/", className = "ehealth.ws.LoginResponse")
-    @Action(input = "http://ws.ehealth/LifestyleCoach/loginRequest", output = "http://ws.ehealth/LifestyleCoach/loginResponse")
-    public String login(
-        @WebParam(name = "username", targetNamespace = "")
-        String username,
-        @WebParam(name = "password", targetNamespace = "")
-        String password);
-
-    /**
-     * 
-     * @param username
-     * @param key
-     * @param goal
-     * @return
-     *     returns ehealth.ws.Goal
-     */
-    @WebMethod(operationName = "GoalUpdate")
-    @WebResult(name = "GoalUpdate", targetNamespace = "")
-    @RequestWrapper(localName = "GoalUpdate", targetNamespace = "http://ws.ehealth/", className = "ehealth.ws.GoalUpdate")
-    @ResponseWrapper(localName = "GoalUpdateResponse", targetNamespace = "http://ws.ehealth/", className = "ehealth.ws.GoalUpdateResponse")
-    @Action(input = "http://ws.ehealth/LifestyleCoach/GoalUpdateRequest", output = "http://ws.ehealth/LifestyleCoach/GoalUpdateResponse")
-    public Goal goalUpdate(
-        @WebParam(name = "goal", targetNamespace = "")
-        Goal goal,
-        @WebParam(name = "username", targetNamespace = "")
-        String username,
-        @WebParam(name = "key", targetNamespace = "")
-        String key);
-
-    /**
-     * 
-     * @param username
-     * @param goalid
-     * @param key
-     * @return
-     *     returns java.lang.String
-     */
-    @WebMethod
-    @WebResult(name = "deleteGoal", targetNamespace = "")
-    @RequestWrapper(localName = "deleteGoal", targetNamespace = "http://ws.ehealth/", className = "ehealth.ws.DeleteGoal")
-    @ResponseWrapper(localName = "deleteGoalResponse", targetNamespace = "http://ws.ehealth/", className = "ehealth.ws.DeleteGoalResponse")
-    @Action(input = "http://ws.ehealth/LifestyleCoach/deleteGoalRequest", output = "http://ws.ehealth/LifestyleCoach/deleteGoalResponse")
-    public String deleteGoal(
-        @WebParam(name = "Goalid", targetNamespace = "")
-        int goalid,
-        @WebParam(name = "username", targetNamespace = "")
-        String username,
-        @WebParam(name = "key", targetNamespace = "")
-        String key);
 
     /**
      * 
@@ -298,6 +208,60 @@ public interface LifestyleCoach {
     /**
      * 
      * @param username
+     * @param goalid
+     * @param key
+     * @return
+     *     returns java.lang.String
+     */
+    @WebMethod
+    @WebResult(name = "deleteGoal", targetNamespace = "")
+    @RequestWrapper(localName = "deleteGoal", targetNamespace = "http://ws.ehealth/", className = "ehealth.ws.DeleteGoal")
+    @ResponseWrapper(localName = "deleteGoalResponse", targetNamespace = "http://ws.ehealth/", className = "ehealth.ws.DeleteGoalResponse")
+    @Action(input = "http://ws.ehealth/LifestyleCoach/deleteGoalRequest", output = "http://ws.ehealth/LifestyleCoach/deleteGoalResponse")
+    public String deleteGoal(
+        @WebParam(name = "Goalid", targetNamespace = "")
+        int goalid,
+        @WebParam(name = "username", targetNamespace = "")
+        String username,
+        @WebParam(name = "key", targetNamespace = "")
+        String key);
+
+    /**
+     * 
+     * @param username
+     * @param key
+     * @return
+     *     returns int
+     */
+    @WebMethod
+    @WebResult(name = "loginCheck", targetNamespace = "")
+    @RequestWrapper(localName = "loginCheck", targetNamespace = "http://ws.ehealth/", className = "ehealth.ws.LoginCheck")
+    @ResponseWrapper(localName = "loginCheckResponse", targetNamespace = "http://ws.ehealth/", className = "ehealth.ws.LoginCheckResponse")
+    @Action(input = "http://ws.ehealth/LifestyleCoach/loginCheckRequest", output = "http://ws.ehealth/LifestyleCoach/loginCheckResponse")
+    public int loginCheck(
+        @WebParam(name = "username", targetNamespace = "")
+        String username,
+        @WebParam(name = "key", targetNamespace = "")
+        String key);
+
+    /**
+     * 
+     * @param user
+     * @return
+     *     returns int
+     */
+    @WebMethod
+    @WebResult(name = "NewUser", targetNamespace = "")
+    @RequestWrapper(localName = "createUser", targetNamespace = "http://ws.ehealth/", className = "ehealth.ws.CreateUser")
+    @ResponseWrapper(localName = "createUserResponse", targetNamespace = "http://ws.ehealth/", className = "ehealth.ws.CreateUserResponse")
+    @Action(input = "http://ws.ehealth/LifestyleCoach/createUserRequest", output = "http://ws.ehealth/LifestyleCoach/createUserResponse")
+    public int createUser(
+        @WebParam(name = "user", targetNamespace = "")
+        UserProfile user);
+
+    /**
+     * 
+     * @param username
      * @param key
      * @return
      *     returns java.lang.String
@@ -312,6 +276,42 @@ public interface LifestyleCoach {
         String username,
         @WebParam(name = "key", targetNamespace = "")
         String key);
+
+    /**
+     * 
+     * @param username
+     * @param key
+     * @param goal
+     * @return
+     *     returns ehealth.ws.Goal
+     */
+    @WebMethod(operationName = "GoalUpdate")
+    @WebResult(name = "GoalUpdate", targetNamespace = "")
+    @RequestWrapper(localName = "GoalUpdate", targetNamespace = "http://ws.ehealth/", className = "ehealth.ws.GoalUpdate")
+    @ResponseWrapper(localName = "GoalUpdateResponse", targetNamespace = "http://ws.ehealth/", className = "ehealth.ws.GoalUpdateResponse")
+    @Action(input = "http://ws.ehealth/LifestyleCoach/GoalUpdateRequest", output = "http://ws.ehealth/LifestyleCoach/GoalUpdateResponse")
+    public Goal goalUpdate(
+        @WebParam(name = "goal", targetNamespace = "")
+        Goal goal,
+        @WebParam(name = "username", targetNamespace = "")
+        String username,
+        @WebParam(name = "key", targetNamespace = "")
+        String key);
+
+    /**
+     * 
+     * @param uid
+     * @return
+     *     returns int
+     */
+    @WebMethod
+    @WebResult(name = "deleteUser", targetNamespace = "")
+    @RequestWrapper(localName = "deleteUser", targetNamespace = "http://ws.ehealth/", className = "ehealth.ws.DeleteUser")
+    @ResponseWrapper(localName = "deleteUserResponse", targetNamespace = "http://ws.ehealth/", className = "ehealth.ws.DeleteUserResponse")
+    @Action(input = "http://ws.ehealth/LifestyleCoach/deleteUserRequest", output = "http://ws.ehealth/LifestyleCoach/deleteUserResponse")
+    public int deleteUser(
+        @WebParam(name = "Uid", targetNamespace = "")
+        int uid);
 
     /**
      * 

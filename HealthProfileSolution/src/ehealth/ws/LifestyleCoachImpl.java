@@ -7,6 +7,7 @@ import java.util.*;
 import javax.jws.WebService;
 
 import org.apache.tools.ant.taskdefs.Exit;
+import org.eclipse.persistence.jpa.jpql.parser.DateTime;
 
 import ehealth.model.*;
 
@@ -152,6 +153,8 @@ public class LifestyleCoachImpl implements LifestyleCoach {
 				ls.setUserProfile(u);
 				ls.setValue(value);
 				ls.setDateTime(new Date());
+				MeasureDefinition md = Person.getMeasureDefinition(mType);
+				ls.setMeasureDefinition(md);
 				LifeStatus l = Person.saveLifeStatus(ls);
 				return l;				
 			}
@@ -245,6 +248,7 @@ public class LifestyleCoachImpl implements LifestyleCoach {
 	public Goal GoalUpdate(Goal g, String username, String key){
 		if (loginCheck(username, key) == 1) {
 			try {
+				g.setProgress("complete");
 				Goal g1= Person.GoalUpdate(g);
 				return g1;
 			}
@@ -262,12 +266,12 @@ public class LifestyleCoachImpl implements LifestyleCoach {
 		if (loginCheck(username, key) == 1) {
 			try {
 				UserProfile u= Person.getUserByUsername(username);
-				String Advice= Person.getAdvice(u.getUid());
-				return Advice;
+				String advice= Person.getAdvice(u.getUid());
+				return advice;
 			}
 			catch (Exception e) {
-				return "Error.Please try again";
-				
+				e.printStackTrace();
+				return "Error.Please try again";				
 			}
 		}
 		else 
@@ -281,18 +285,22 @@ public class LifestyleCoachImpl implements LifestyleCoach {
 		if (loginCheck(username, key) == 1) {
 			try {
 					UserProfile u = Person.getUserByUsername(username);
+					System.out.println(u.getUid());
 					List<Goal> g = Person.getGoalbyUserId(u.getUid());
 					Date date= new Date();
+					System.out.println(g.size());
 					for(int i=0; i<=g.size(); i++)
 					{
+						if(!g.isEmpty()){
 						Goal g1 = g.get(i);
 						Date goalDate = g1.getScheduleDateTime();
 						if(date.after(goalDate)){
-							if(g1.getProgress().equals("current")){
+							if(!g1.getProgress().equals("complete")){
 								return g1;
 							}
 						}
-					}						
+					}
+					}
 				}
 			catch (Exception e) {
 				e.printStackTrace();
