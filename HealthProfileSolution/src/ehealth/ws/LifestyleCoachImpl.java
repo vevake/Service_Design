@@ -10,6 +10,7 @@ import org.apache.tools.ant.taskdefs.Exit;
 import org.eclipse.persistence.jpa.jpql.parser.DateTime;
 
 import ehealth.model.*;
+import ehealth.external.*;
 
 @WebService(endpointInterface = "ehealth.ws.LifestyleCoach",serviceName="HealthProfile")
 public class LifestyleCoachImpl implements LifestyleCoach {
@@ -136,6 +137,7 @@ public class LifestyleCoachImpl implements LifestyleCoach {
 	public LifeStatus addLifeStatus(String username, String key, Double value, String mType){
 		if(loginCheck(username, key) == 1) {
 			try {
+				System.out.println(mType);
 				UserProfile u =Person.getUserByUsername(username);
 				LifeStatus ls = new LifeStatus();
 				HealthMeasureHistory hm = new HealthMeasureHistory();
@@ -262,7 +264,13 @@ public class LifestyleCoachImpl implements LifestyleCoach {
 	/*
 	 * Get Motivation quotes
 	 */
-	public String getMotivation(String username, String key){
+	public String getMotivation(){
+		GetForismatic f = new GetForismatic();
+		Forismatic quote = f.getquote();
+		return quote.quote;
+		
+	}
+	/*public String getMotivation(String username, String key){
 		if (loginCheck(username, key) == 1) {
 			try {
 				UserProfile u= Person.getUserByUsername(username);
@@ -276,7 +284,7 @@ public class LifestyleCoachImpl implements LifestyleCoach {
 		}
 		else 
 			return "Please log-in";
-	}	
+	}*/	
 	
 	/*
 	 * Get push notifications for Goals

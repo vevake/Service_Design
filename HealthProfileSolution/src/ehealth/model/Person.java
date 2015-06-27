@@ -255,7 +255,7 @@ public class Person {
 	public static MeasureDefinition getMeasureDefinition(String mName){
 		EntityManager em=LifestyleCoachDAO.instance.createEntityManager();
 		try{
-		MeasureDefinition md=(MeasureDefinition)em.createNativeQuery("SELECT m from MeasureDefinition WHERE measureName='"+mName+"'", MeasureDefinition.class).getSingleResult();
+		MeasureDefinition md=(MeasureDefinition)em.createNativeQuery("SELECT * from MeasureDefinition WHERE measureName='"+mName+"'", MeasureDefinition.class).getSingleResult();
 		return md;
 		}
 		finally{

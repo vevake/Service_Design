@@ -11,7 +11,7 @@ import ehealth.model.UserProfile;
 import ehealth.model.Goal;
 import ehealth.model.LifeStatus;
 
-@WebService
+@WebService(name="LifeCoach")
 @SOAPBinding(style = Style.DOCUMENT, use = Use.LITERAL)
 public interface LifestyleCoach {
 
@@ -125,7 +125,8 @@ public interface LifestyleCoach {
 	 */
 	@WebMethod(operationName="GetMotivation")
 	@WebResult(name="Motivation")
-	public String getMotivation(@WebParam(name="username") String user, @WebParam(name="key") String key);
+	public String getMotivation();
+	//public String getMotivation(@WebParam(name="username") String user, @WebParam(name="key") String key);
 	
 	/*
 	 * Get push notifications

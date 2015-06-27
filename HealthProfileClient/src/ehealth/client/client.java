@@ -17,6 +17,7 @@ import  ehealth.ws.*;
 public class client {
 
 	public static  String username="", key="";
+	public static boolean thread = true;
 	public static LifestyleCoach lifestyle;
 	public static void main(String[] args) throws Exception {
 
@@ -42,6 +43,8 @@ public class client {
         }
         }
         boolean flag= true;
+        PushReminder thread_pr = new PushReminder();
+        thread_pr.start_thread();
         while(flag){
             MenuPage();
             int option = Integer.parseInt(buffer.readLine());
@@ -59,7 +62,8 @@ public class client {
         		UserProfile u = lifestyle.getUserProfile(username, key);
         		System.out.println("Enter the measure value:");
         		double value = Double.parseDouble(buffer.readLine());
-        		lifestyle.addLifeStatus(username,key,value,md.get(m).getMeasureName());
+        		System.out.println(md.get(m-1).getMeasureName());
+        		lifestyle.addLifeStatus(username,key,value,md.get(m-1).getMeasureName());
         		break;
         
         case 2:	//Retrieve LifeStatus
@@ -84,9 +88,12 @@ public class client {
         	
         case 4:	//log-out
     		lifestyle.logout(username, key);
+    		thread = false;
     		break;
         case 5: //Exit
         	flag = false;
+        	thread = false;
+        	break;
         default:
         		break;
       }	
@@ -103,7 +110,6 @@ public class client {
 	}
 	public static class PushReminder implements Runnable{
 		private Goal g=null;
-		private boolean thread = true;
 		private Thread t;
 		private String goal;
 		@Override
@@ -114,9 +120,9 @@ public class client {
 					g=lifestyle.getPushMessage(username, key);
 					goal = "Goal: " +g.getGoal();
 					goal += "Time: " +g.getScheduleDateTime();
-					JOptionPane.showConfirmDialog(null, goal);
+					JOptionPane.showMessageDialog(null, goal);
 				}
-				t.sleep(1000);
+				t.sleep(1000 * 60 * 10);
 				}
 				catch(Exception e){
 					e.printStackTrace();

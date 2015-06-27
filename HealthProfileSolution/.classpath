@@ -16,5 +16,15 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="C:/Users/vjay/Documents/Service_Design/HealthProfileSolution/jersey-client-1.1.5.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/vjay/.m2/repository/commons-httpclient/commons-httpclient/3.1/commons-httpclient-3.1.jar">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="maven.groupId" value="commons-httpclient"/>
+			<attribute name="maven.artifactId" value="commons-httpclient"/>
+			<attribute name="maven.version" value="3.1"/>
+			<attribute name="maven.scope" value="compile"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/vjay/Documents/Service_Design/HealthProfileSolution/facebook-java-api-3.0.2.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
