@@ -26,5 +26,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="C:/Users/vjay/Documents/Service_Design/HealthProfileSolution/facebook-java-api-3.0.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/vjay/Documents/Service_Design/HealthProfileSolution/twitter4j-core-4.0.2.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
