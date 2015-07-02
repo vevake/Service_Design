@@ -65,11 +65,11 @@ public class HealthProfile
     /**
      * 
      * @return
-     *     returns LifestyleCoach
+     *     returns LifeCoach
      */
     @WebEndpoint(name = "LifestyleCoachImplPort")
-    public LifestyleCoach getLifestyleCoachImplPort() {
-        return super.getPort(new QName("http://ws.ehealth/", "LifestyleCoachImplPort"), LifestyleCoach.class);
+    public LifeCoach getLifestyleCoachImplPort() {
+        return super.getPort(new QName("http://ws.ehealth/", "LifestyleCoachImplPort"), LifeCoach.class);
     }
 
     /**
@@ -77,11 +77,11 @@ public class HealthProfile
      * @param features
      *     A list of {@link javax.xml.ws.WebServiceFeature} to configure on the proxy.  Supported features not in the <code>features</code> parameter will have their default values.
      * @return
-     *     returns LifestyleCoach
+     *     returns LifeCoach
      */
     @WebEndpoint(name = "LifestyleCoachImplPort")
-    public LifestyleCoach getLifestyleCoachImplPort(WebServiceFeature... features) {
-        return super.getPort(new QName("http://ws.ehealth/", "LifestyleCoachImplPort"), LifestyleCoach.class, features);
+    public LifeCoach getLifestyleCoachImplPort(WebServiceFeature... features) {
+        return super.getPort(new QName("http://ws.ehealth/", "LifestyleCoachImplPort"), LifeCoach.class, features);
     }
 
     private static URL __getWsdlLocation() {

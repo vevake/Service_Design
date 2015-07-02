@@ -5,9 +5,14 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 import javax.jws.WebService;
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.UriBuilder;
 
 import org.apache.tools.ant.taskdefs.Exit;
 import org.eclipse.persistence.jpa.jpql.parser.DateTime;
+import org.glassfish.jersey.client.ClientConfig;
 
 import ehealth.model.*;
 import ehealth.external.*;
@@ -267,8 +272,7 @@ public class LifestyleCoachImpl implements LifestyleCoach {
 	public String getMotivation(){
 		GetForismatic f = new GetForismatic();
 		Forismatic quote = f.getquote();
-		return quote.quote;
-		
+		return quote.quote;		
 	}
 	/*public String getMotivation(String username, String key){
 		if (loginCheck(username, key) == 1) {
@@ -297,17 +301,15 @@ public class LifestyleCoachImpl implements LifestyleCoach {
 					List<Goal> g = Person.getGoalbyUserId(u.getUid());
 					Date date= new Date();
 					System.out.println(g.size());
-					for(int i=0; i<=g.size(); i++)
-					{
-						if(!g.isEmpty()){
+					for(int i=0; i<g.size(); i++)
+					{						
 						Goal g1 = g.get(i);
 						Date goalDate = g1.getScheduleDateTime();
-						if(date.after(goalDate)){
+						if(date.before(goalDate)){
 							if(!g1.getProgress().equals("complete")){
 								return g1;
 							}
 						}
-					}
 					}
 				}
 			catch (Exception e) {
@@ -315,5 +317,79 @@ public class LifestyleCoachImpl implements LifestyleCoach {
 			}
 		}
 		return null;
+	}
+	
+	/*
+	 * Share LifeStatus on Twitter
+	 */
+	public String ShareLifeStatus(String username, String key){
+		if(loginCheck(username, key)==1)
+		{
+			UserProfile user = null;
+			user = Person.getUserByUsername(username);
+			List<LifeStatus> list = Person.getLifeStatusbyUserId(user.getUid());
+			if(!list.isEmpty()){
+			String tweet = "My current life status --> ";
+			for (LifeStatus lifeStatus : list) {
+				tweet += lifeStatus.getMeasureDefinition()
+						.getMeasureName();
+				tweet += ": ";
+				tweet += lifeStatus.getValue();
+				tweet += ", ";
+			}
+			System.out.println(tweet);
+			UpdateStatus obj = new UpdateStatus();
+			int status = obj.postTwitterStatus(tweet);
+			if (status == 1) {
+				return "Share Successful.";
+			} 
+			else 
+			{
+				return "Status not shared.Error.";
+			}
+			}
+			else
+				return "No LifeStatus found";
+		}
+		else
+			return "Login to Share";
+	}
+	
+	/*
+	 * share current Goal on Twitter
+	 */
+	public String ShareGoal(String username, String key){
+		if(loginCheck(username, key)==1)
+		{
+			UserProfile user = null;
+			user = Person.getUserByUsername(username);
+			List<Goal> list = Person.getGoalbyUserId(user.getUid());
+			String tweet = "My Goal: ";
+			if(!list.isEmpty()){
+				for (Goal g : list) {
+					if(!g.getProgress().equals("complete")){
+						tweet += g.getGoal();
+						tweet +="  ";
+						break;
+					}
+				}
+				tweet +=".   ";
+				tweet += getMotivation();
+				System.out.println(tweet);
+				UpdateStatus obj = new UpdateStatus();
+				int status = obj.postTwitterStatus(tweet);
+				if (status == 1) {
+					return "Share Successful.";
+				} 
+				else 
+				{
+					return "Status not shared.Error.";
+				}
+			}
+			else
+				return "No Goal found";
+		}
+		else
+			return "Login to Share";
 	}
 }

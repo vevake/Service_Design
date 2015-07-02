@@ -13,7 +13,7 @@ import com.sun.jersey.api.client.config.DefaultClientConfig;
 
 public class client {
 	private static final String TEST_username = "vvek";
-	private static final String TEST_key = "c1c53056-081e-4a15-a716-32d4eed35a23";
+	//private static final String TEST_key = "c1c53056-081e-4a15-a716-32d4eed35a23";
 	
 	public static void main(String[] args) {
 	

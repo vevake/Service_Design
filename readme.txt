@@ -14,7 +14,7 @@ REST Services
 		
 	Method : AllProfile
 		Retrieves All UserProfile 
-		eg : http://localhost:8000/rest/LifestyleCoach/rest/AllProfile
+		eg : http://localhost:8000/rest/LifestyleCoach/rest/AllProfiles
 		
 
 WebServices
@@ -69,7 +69,13 @@ WebServices
 		Update an existing goal
 	
 	Method : getMotivation
-		Get motivation
+		Get motivation from Forismatic External API
 	
 	Method : getPushMessage
 		Get push notifications
+	
+	Method : shareLifeStatus
+		Share the current LifeStatus on Twitter
+	
+	Method : shareGoal
+		Share the current Goal on Twitter

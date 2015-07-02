@@ -18,13 +18,13 @@ public class client {
 
 	public static  String username="", key="";
 	public static boolean thread = true;
-	public static LifestyleCoach lifestyle;
+	public static LifeCoach lifestyle;
 	public static void main(String[] args) throws Exception {
 
 		URL url = new URL("http://localhost:8000/ehealth/LifestyleCoach?wsdl");
 		QName qname = new QName("http://ws.ehealth/", "HealthProfile");
 		Service service = Service.create(url, qname);
-		lifestyle = service.getPort(LifestyleCoach.class);  
+		lifestyle = service.getPort(LifeCoach.class);  
 		BufferedReader buffer = new BufferedReader(new InputStreamReader(System.in));
         //log-in
         boolean logout =true;
@@ -80,17 +80,33 @@ public class client {
         	List<Goal> g = lifestyle.getCurrentGoal(username, key);
         	for (Goal goal : g)
         	{
-        		System.out.print(goal.getGoal());
-        		System.out.print(goal.getScheduleDateTime());
+        		System.out.print("Goal:" +goal.getGoal());
+        		System.out.print("  Time:"+goal.getScheduleDateTime());
         		System.out.println();
         	}
         	break;
         	
-        case 4:	//log-out
+        case 4: //Share LifeStatus
+        	String result = lifestyle.shareLifeStatus(username,key);
+        	System.out.println(result);
+        	break;
+        	
+        case 5: // Share Goal
+        	String result1 = lifestyle.shareGoal(username,key);
+        	System.out.println(result1);
+        	break;
+        
+        case 6: // Get Motivation quotes
+        	String quote = lifestyle.getMotivation();
+        	System.out.println(quote);
+        	break;
+        	
+        case 7:	//log-out
     		lifestyle.logout(username, key);
     		thread = false;
+    		flag=false;
     		break;
-        case 5: //Exit
+        case 8: //Exit
         	flag = false;
         	thread = false;
         	break;
@@ -104,8 +120,11 @@ public class client {
 		System.out.println("1.Add Lifestatus.");
 		System.out.println("2.View the current LifeStatus");
 		System.out.println("3.View current goal");
-		System.out.println("4.Log-out");
-		System.out.println("5.Exit");
+		System.out.println("4.Share LifeStatus");
+		System.out.println("5.Share Goal");
+		System.out.println("6.Get Motivational Quotes");
+		System.out.println("7.Log-out");
+		System.out.println("8.Exit");
 		System.out.println("Enter your option from above:");
 	}
 	public static class PushReminder implements Runnable{
@@ -118,9 +137,12 @@ public class client {
 				try{
 				if (!key.equals("")){
 					g=lifestyle.getPushMessage(username, key);
+					System.out.println(g);
+					if(g!=null){
 					goal = "Goal: " +g.getGoal();
 					goal += "Time: " +g.getScheduleDateTime();
 					JOptionPane.showMessageDialog(null, goal);
+					}
 				}
 				t.sleep(1000 * 60 * 10);
 				}

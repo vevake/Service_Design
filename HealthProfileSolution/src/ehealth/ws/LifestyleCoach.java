@@ -134,4 +134,19 @@ public interface LifestyleCoach {
 	@WebMethod(operationName="GetPushMessage")
 	@WebResult(name="PushMessage")
 	public Goal getPushMessage(@WebParam(name="username") String user, @WebParam(name="key") String key);
+	
+	/*
+	 * share current LifeStatus on Twitter
+	 */
+	@WebMethod(operationName="shareLifeStatus")
+	@WebResult(name="shareLifeStatus")
+	public String ShareLifeStatus(@WebParam(name="username") String user, @WebParam(name="key") String key);
+	
+	/*
+	 * share current Goal on Twitter
+	 */
+	@WebMethod(operationName="shareGoal")
+	@WebResult(name="shareGoal")
+	public String ShareGoal(@WebParam(name="username") String user, @WebParam(name="key") String key);
+	
 }

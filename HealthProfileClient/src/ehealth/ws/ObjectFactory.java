@@ -32,11 +32,14 @@ public class ObjectFactory {
     private final static QName _GoalUpdateResponse_QNAME = new QName("http://ws.ehealth/", "GoalUpdateResponse");
     private final static QName _ViewLifeStatus_QNAME = new QName("http://ws.ehealth/", "viewLifeStatus");
     private final static QName _DeleteUserResponse_QNAME = new QName("http://ws.ehealth/", "deleteUserResponse");
+    private final static QName _ShareLifeStatusResponse_QNAME = new QName("http://ws.ehealth/", "shareLifeStatusResponse");
     private final static QName _GetPushMessageResponse_QNAME = new QName("http://ws.ehealth/", "GetPushMessageResponse");
+    private final static QName _ShareGoal_QNAME = new QName("http://ws.ehealth/", "shareGoal");
     private final static QName _LifeStatus_QNAME = new QName("http://ws.ehealth/", "lifeStatus");
     private final static QName _DeleteGoalResponse_QNAME = new QName("http://ws.ehealth/", "deleteGoalResponse");
     private final static QName _CreateUserResponse_QNAME = new QName("http://ws.ehealth/", "createUserResponse");
     private final static QName _LoginCheckResponse_QNAME = new QName("http://ws.ehealth/", "loginCheckResponse");
+    private final static QName _ShareLifeStatus_QNAME = new QName("http://ws.ehealth/", "shareLifeStatus");
     private final static QName _GetCurrentGoalResponse_QNAME = new QName("http://ws.ehealth/", "getCurrentGoalResponse");
     private final static QName _GetPushMessage_QNAME = new QName("http://ws.ehealth/", "GetPushMessage");
     private final static QName _GetCurrentGoal_QNAME = new QName("http://ws.ehealth/", "getCurrentGoal");
@@ -55,6 +58,7 @@ public class ObjectFactory {
     private final static QName _AddLifeStatus_QNAME = new QName("http://ws.ehealth/", "addLifeStatus");
     private final static QName _AddLifeStatusResponse_QNAME = new QName("http://ws.ehealth/", "addLifeStatusResponse");
     private final static QName _GetAllUsers_QNAME = new QName("http://ws.ehealth/", "getAllUsers");
+    private final static QName _ShareGoalResponse_QNAME = new QName("http://ws.ehealth/", "shareGoalResponse");
     private final static QName _GetMotivationResponse_QNAME = new QName("http://ws.ehealth/", "GetMotivationResponse");
     private final static QName _GetMeasuresDefinitionResponse_QNAME = new QName("http://ws.ehealth/", "getMeasuresDefinitionResponse");
     private final static QName _LoginResponse_QNAME = new QName("http://ws.ehealth/", "loginResponse");
@@ -81,6 +85,14 @@ public class ObjectFactory {
      */
     public GetCurrentGoalResponse createGetCurrentGoalResponse() {
         return new GetCurrentGoalResponse();
+    }
+
+    /**
+     * Create an instance of {@link ShareLifeStatus }
+     * 
+     */
+    public ShareLifeStatus createShareLifeStatus() {
+        return new ShareLifeStatus();
     }
 
     /**
@@ -116,11 +128,27 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link ShareGoal }
+     * 
+     */
+    public ShareGoal createShareGoal() {
+        return new ShareGoal();
+    }
+
+    /**
      * Create an instance of {@link GetPushMessageResponse }
      * 
      */
     public GetPushMessageResponse createGetPushMessageResponse() {
         return new GetPushMessageResponse();
+    }
+
+    /**
+     * Create an instance of {@link ShareLifeStatusResponse }
+     * 
+     */
+    public ShareLifeStatusResponse createShareLifeStatusResponse() {
+        return new ShareLifeStatusResponse();
     }
 
     /**
@@ -201,6 +229,14 @@ public class ObjectFactory {
      */
     public LoginResponse createLoginResponse() {
         return new LoginResponse();
+    }
+
+    /**
+     * Create an instance of {@link ShareGoalResponse }
+     * 
+     */
+    public ShareGoalResponse createShareGoalResponse() {
+        return new ShareGoalResponse();
     }
 
     /**
@@ -444,12 +480,30 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ShareLifeStatusResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://ws.ehealth/", name = "shareLifeStatusResponse")
+    public JAXBElement<ShareLifeStatusResponse> createShareLifeStatusResponse(ShareLifeStatusResponse value) {
+        return new JAXBElement<ShareLifeStatusResponse>(_ShareLifeStatusResponse_QNAME, ShareLifeStatusResponse.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link GetPushMessageResponse }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "http://ws.ehealth/", name = "GetPushMessageResponse")
     public JAXBElement<GetPushMessageResponse> createGetPushMessageResponse(GetPushMessageResponse value) {
         return new JAXBElement<GetPushMessageResponse>(_GetPushMessageResponse_QNAME, GetPushMessageResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ShareGoal }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://ws.ehealth/", name = "shareGoal")
+    public JAXBElement<ShareGoal> createShareGoal(ShareGoal value) {
+        return new JAXBElement<ShareGoal>(_ShareGoal_QNAME, ShareGoal.class, null, value);
     }
 
     /**
@@ -486,6 +540,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://ws.ehealth/", name = "loginCheckResponse")
     public JAXBElement<LoginCheckResponse> createLoginCheckResponse(LoginCheckResponse value) {
         return new JAXBElement<LoginCheckResponse>(_LoginCheckResponse_QNAME, LoginCheckResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ShareLifeStatus }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://ws.ehealth/", name = "shareLifeStatus")
+    public JAXBElement<ShareLifeStatus> createShareLifeStatus(ShareLifeStatus value) {
+        return new JAXBElement<ShareLifeStatus>(_ShareLifeStatus_QNAME, ShareLifeStatus.class, null, value);
     }
 
     /**
@@ -648,6 +711,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://ws.ehealth/", name = "getAllUsers")
     public JAXBElement<GetAllUsers> createGetAllUsers(GetAllUsers value) {
         return new JAXBElement<GetAllUsers>(_GetAllUsers_QNAME, GetAllUsers.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ShareGoalResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://ws.ehealth/", name = "shareGoalResponse")
+    public JAXBElement<ShareGoalResponse> createShareGoalResponse(ShareGoalResponse value) {
+        return new JAXBElement<ShareGoalResponse>(_ShareGoalResponse_QNAME, ShareGoalResponse.class, null, value);
     }
 
     /**
